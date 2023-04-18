@@ -1,19 +1,17 @@
 # cleaning
-import abc
+
 import re
 import os.path
-import csv
 import pandas as pd
 import numpy as np
-import collections.abc
-import dataclasses
 from pathlib import Path
 
 # drop rows with na transcription
 def cleaning(file_path):
     path_file = Path(file_path)
-    if os.path.isfile(path_file.parent / 'clean_df.tsv'):
-         pass
+    if os.path.isfile(path_file.parent / 'clean_data.csv'):
+        df = pd.read_csv(path_file.parent / 'clean_data.csv', index_col=0)
+        return df
     else:
         df = pd.read_csv(path_file, index_col=0)
         df.dropna(subset=['transcription'], inplace=True) # drop rows with missing transcripts
@@ -38,7 +36,7 @@ def cleaning(file_path):
         # df = filtered_data_categories.sample(frac=1.0)
 
         # determine the path where to save the data file
-        data_path = Path(path_file.parent, 'cleaned_data.tsv')
+        data_path = Path(path_file.parent, 'clean_data.csv')
         # save cleaned data
         df.to_csv(data_path, index=False)
         return df
