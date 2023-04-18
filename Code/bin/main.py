@@ -7,7 +7,7 @@ from Code.utils.cleaning import cleaning
 # from Code.utils.display import display_entities
 # from Code.eval.eval import evaluate_model
 from Code.entities import extract_entities
-
+from Code.summarization import SumText
 def main(input_dir):
     # Load data into a pandas DataFrame
     df = cleaning(input_dir)
@@ -16,7 +16,16 @@ def main(input_dir):
     # evaluate
     df['entities'] = df['transcription'].apply(extract_entities)
     # evaluate_model(df)
-
+    sum_list = []
+    def_list = []
+    for row in df['transcription']:
+        res = SumText(row)
+        res = res.summarize()
+        res_def = SumText.add_definitions(res)
+        sum_list.append(res)
+        def_list.append(res_def)
+    df['summary'] = sum_list
+    df['summary_definitions'] = def_list
     # # display
     # display_entities(df)
 
