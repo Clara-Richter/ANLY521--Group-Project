@@ -1,6 +1,6 @@
 # eval
 import pandas as pd 
-import nltk
+#import nltk
 import spacy
 from Code.entities import extract_entities
 from sklearn.metrics import precision_score, recall_score, f1_score

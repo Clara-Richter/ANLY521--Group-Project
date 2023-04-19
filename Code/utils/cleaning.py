@@ -10,15 +10,19 @@ from pathlib import Path
 def cleaning(file_path):
     path_file = Path(file_path)
     if os.path.isfile(path_file.parent / 'clean_data.csv'):
-        df = pd.read_csv(path_file.parent / 'clean_data.csv', index_col=0)
+        df = pd.read_csv(path_file.parent / 'clean_data.csv')
         return df
     else:
-        df = pd.read_csv(path_file, index_col=0)
+        df = pd.read_csv(path_file)
         df.dropna(subset=['transcription'], inplace=True) # drop rows with missing transcripts
         # remove the “.,” marks that appear to separate some sections of the transcription
         df['transcription'] = df['transcription'].apply(lambda x: re.sub('(\.,)', ". ", x))
         # change the transcriptions column to lower case
         df['transcription'] = df['transcription'].str.lower()
+
+        ############
+        df = df.sample(n=2, replace=False, random_state=42)
+        ##########
 
         #### deal with data imbalance issue ?????
         # filtered_data = df[['transcription', 'medical_specialty']]

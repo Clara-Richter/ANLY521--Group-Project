@@ -4,18 +4,20 @@
 import argparse
 import spacy
 from Code.utils.cleaning import cleaning
-# from Code.utils.display import display_entities
-# from Code.eval.eval import evaluate_model
+from Code.utils.display import display_entities
+from Code.eval.eval import evaluate_model
 from Code.entities import extract_entities
 from Code.summarization import SumText
+
 def main(input_dir):
     # Load data into a pandas DataFrame
     df = cleaning(input_dir)
-    print(df.head())
-
     # evaluate
     df['entities'] = df['transcription'].apply(extract_entities)
-    # evaluate_model(df)
+    evaluate_model(df)
+    # display
+    display_entities(df)
+
     sum_list = []
     def_list = []
     for row in df['transcription']:
@@ -26,19 +28,13 @@ def main(input_dir):
         def_list.append(res_def)
     df['summary'] = sum_list
     df['summary_definitions'] = def_list
-    # # display
-    # display_entities(df)
-
 
     # call entity ruler model in NER_model.py
     # ruler_model = ...
     # ruler_model.to_disk('./model/ruler_model')
-
     # call GenerateDataset class to generate annotated text dataset
-
     # divide subsets for model training, validation, and testing
 
-    
         
 if __name__ == '__main__':
     # Set up argparse
