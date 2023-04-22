@@ -3,6 +3,7 @@ from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output, State
 from Code.entities import extract_entities
+from Code.summarization import SumText
 
 import spacy
 import dash_bootstrap_components as dbc
@@ -10,7 +11,7 @@ import dash_bootstrap_components as dbc
 available_packages = ['en_ner_bionlp13cg_md',]
 
 
-nlp = spacy.load('en_ner_bionlp13cg_md')
+#nlp = spacy.load('en_ner_bionlp13cg_md')
 
 app = dash.Dash(
     external_stylesheets=[dbc.themes.BOOTSTRAP]
@@ -115,7 +116,7 @@ about_us_layout = dbc.Container([
             [
                 dbc.Card(
                     [
-                        dbc.CardImg(src="./img/HyuksooShin_hs1062.png", top=True),
+                        dbc.CardImg(src="img/HyuksooShin_hs1062.png", top=True),
                         dbc.CardBody(
                             [
                                 html.H4("Hyuksoo Shin", className="card-title"),
@@ -185,14 +186,32 @@ ourwork_layout = dbc.Container(
                                 dbc.Col(
                                     dbc.Button("Summarization",
                                                id="summarize-button",
-                                               color="success"),
+                                               color="success",
+                                               n_clicks=0),
                                     className="d-grid gap-2"
                                 ),
 
                                 dbc.Col(
-                                    dbc.Button("NER", id="ner-button", color="warning"),
+                                    dbc.Button("Add Definitions",
+                                               id="definitions-button",
+                                               color="secondary",
+                                               n_clicks=0),
                                     className="d-grid gap-2"
-                                )
+                                ),
+
+                                dbc.Col(
+                                    dbc.Button("Entities", id="entities-button", color="warning",
+                                               n_clicks=0),
+                                    className="d-grid gap-2"
+                                ),
+
+                                dbc.Col(
+                                    dbc.Button("Display NER",
+                                               id="display-button",
+                                               color="primary",
+                                               n_clicks=0),
+                                    className="d-grid gap-2"
+                                ),
                             ],
                             justify="center",
                             className="mt-3 text-center justify-content_center"
@@ -204,7 +223,13 @@ ourwork_layout = dbc.Container(
                 ),
             ],
             align="stretch",
-        )
+        ),
+
+        html.Br(),
+        html.Br(),
+        html.H4("Output Section",
+                className="p-3 mb-2 bg-secondary text-white border"),
+        html.Div(id="output")
     ],
     style={"padding-top": "5rem"}   # add padding to push the content down so that the Navbar doesn't cover the content
 
@@ -259,16 +284,51 @@ def display_page(pathname):
 #     html.Div(id='output')
 # ])
 
-@app.callback(Output('output', 'children'),
-              Input('submit-button', 'n_clicks'),
-              State('input-text', 'value'))
-def update_output(n_clicks, input_text):
-    if n_clicks is not None and n_clicks > 0:
-        output_list = extract_entities(input_text)
-        return html.Ul([
-            html.Li(f"{text} ({label}") for text, label in output_list
-        ])
+#
+# @app.callback(Output('output', 'children'),
+#               Input('summarize-button', 'n_clicks'),
+#               Input('entities-button', 'n_clicks'),
+#               State('input-text', 'value'))
+# def update_output(n_clicks, input_text):
+#     triggered_id = ctx.triggered_id
+#     if triggered_id == "summarize-button":
+#         s = SumText(input_text)
+#         res = s.summarize()
+#         return [html.P("Summarization:"), html.P(res)]
+#     elif triggered_id == "entities-button":
+#         output_list = extract_entities(input_text)
+#         return html.Ul(
+#             [html.Li(f"{text} ({label}") for text, label in output_list]
+#         )
+#
 
+
+@app.callback(Output('output', 'children', allow_duplicate=True),
+              Input('summarize-button', 'n_clicks'),
+              State('input-text', 'value'),
+              prevent_initial_call=True
+              )
+def update_summarize_output(n_clicks, input_text):
+    if n_clicks is not None and n_clicks > 0 and input_text:
+        print(1)
+        s = SumText(input_text)
+        res = s.summarize()
+        return [html.P("Summarization:"), html.P(res)]
+    return "Please enter text"
+
+
+@app.callback(Output('output', 'children'),
+              Input('entities-button', 'n_clicks'),
+              State('input-text', 'value'))
+def update_entities_output(n_clicks, input_text):
+    if n_clicks is not None and n_clicks > 0 and input_text:
+        print(2)
+        output_list = extract_entities(input_text)
+        print(3)
+        return [
+            html.P("Entities:"),
+            html.Ul([html.Li(f"{text} ({label})") for text, label in output_list])
+        ]
     return "Please enter text"
 
 
