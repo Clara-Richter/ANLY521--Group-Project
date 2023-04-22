@@ -9,21 +9,23 @@ MedEase is a tool that uses NLP to help users better understand medical text. Th
 
 ## Installation
 To use this project, you must first create a Conda environment with the required packages. You can do this using the following command:
-
 ```
 conda env create -f environment.yml
 ```
 
 This will create a new Conda environment called '...' with all the required packages.
 
-Next, activate the Conda environment using the following command:
-
+Next, activate the Conda environment using the following command
 ```
 conda activate ...
 ```
 
-Finally, run the following command to launch the Dash website:
+Install MedEase:
+```
+pip install .
+```
 
+Finally, run the following command to launch the Dash website:
 ```
 python dash/nlp_dash.py
 ```
