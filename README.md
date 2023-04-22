@@ -4,7 +4,6 @@ MedEase is a tool that uses NLP to help users better understand medical text. Th
 ### Table of Contents
 - Installation
 - Usage
-- Contributing
 - License
 
 ## Installation
