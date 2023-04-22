@@ -1,5 +1,4 @@
 absl-py==1.4.0
-aiohttp @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_690hlorvpy/croot/aiohttp_1670009554132/work
 aiosignal @ file:///tmp/build/80754af9/aiosignal_1637843061372/work
 anyio @ file:///opt/concourse/worker/volumes/live/485b0f52-1188-482a-6285-65a36c8fa8a6/volume/anyio_1644481714856/work/dist
 appdirs @ file:///home/conda/feedstock_root/build_artifacts/appdirs_1603108395799/work
@@ -101,7 +100,7 @@ Markdown==3.4.1
 MarkupSafe @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_d4a9444f-bd4c-4043-b47d-cede33979b0fve7bm42r/croots/recipe/markupsafe_1654597878200/work
 matplotlib @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_35aw7vfp_z/croot/matplotlib-suite_1670466139477/work
 matplotlib-inline @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_9ddl71oqte/croots/recipe/matplotlib-inline_1662014471815/work
--e git+https://github.com/hss0727/ANLY521--Group-Project@4d90219f277f4afffc6df979727c25f946014abc#egg=medical_translation
+-e git+https://github.com/hss0727/ANLY521--Group-Project@2f7775f87742097e48353066e6266859008c5acd#egg=medical_translation
 mistune @ file:///opt/concourse/worker/volumes/live/4217afd5-dad1-438d-6f79-e4992ccda0e5/volume/mistune_1607364880245/work
 mkl-fft==1.3.1
 mkl-random @ file:///opt/concourse/worker/volumes/live/0cda23d8-7460-44b2-7e5d-3c76a8a0ca7e/volume/mkl_random_1626186083266/work
