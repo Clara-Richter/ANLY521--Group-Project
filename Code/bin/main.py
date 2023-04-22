@@ -5,7 +5,6 @@ import argparse
 import spacy
 from Code.utils.cleaning import cleaning
 from Code.utils.display import display_entities
-from Code.eval.eval import evaluate_model
 from Code.entities import extract_entities
 from Code.summarization import SumText
 
@@ -14,7 +13,6 @@ def main(input_dir):
     df = cleaning(input_dir)
     # evaluate
     df['entities'] = df['transcription'].apply(extract_entities)
-    evaluate_model(df)
     # display
     display_entities(df)
 
@@ -29,11 +27,6 @@ def main(input_dir):
     df['summary'] = sum_list
     df['summary_definitions'] = def_list
 
-    # call entity ruler model in NER_model.py
-    # ruler_model = ...
-    # ruler_model.to_disk('./model/ruler_model')
-    # call GenerateDataset class to generate annotated text dataset
-    # divide subsets for model training, validation, and testing
 
         
 if __name__ == '__main__':
