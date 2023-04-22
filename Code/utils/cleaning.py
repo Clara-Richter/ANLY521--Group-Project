@@ -44,7 +44,7 @@ def cleaning(file_path):
         # save cleaned data
         df.to_csv(data_path, index=False)
         return df
-
+ 
 
 # split?
 # def split_data(file_path):

@@ -1,8 +1,8 @@
 import spacy
 from spacy import displacy
-from IPython.core.display import display, HTML
-from pathlib import Path
-import json
+# from IPython.core.display import display, HTML
+# from pathlib import Path
+# import json
 
 def display_entities(df):
     nlp = spacy.load('en_ner_bc5cdr_md')
@@ -26,8 +26,7 @@ def display_entities(df):
         # generate HTML visualization
         colors = {
                 "DISEASE": "#FF5733",
-                "SYMPTOM": "#F7DC6F",
-                "TREATMENT": "#ABEBC6",
+                "CHEMICAL": "#F7DC6F"
             }
 
         html = displacy.render(doc, style="ent", options={"compact": True, "colors": colors})
