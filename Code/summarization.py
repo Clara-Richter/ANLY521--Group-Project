@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 import argparse
 import nltk
 from nltk.corpus import stopwords
-nltk.download('stopwords')
+#nltk.download('stopwords')
 
 
 class SumText:
