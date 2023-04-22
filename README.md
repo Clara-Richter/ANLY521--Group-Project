@@ -1,2 +1,2 @@
-# ANLY521--Group-Project
+# MedText Translator
 Using NLP to better understand medical documents.
