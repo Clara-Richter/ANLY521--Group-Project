@@ -24,7 +24,7 @@ Finally, run the following command to launch the Dash website:
 python dash/nlp_dash.py
 ```
 
-This will launch the website, which you can access in your web browser by navigating to http://localhost:8050.
+This will launch the website, which you can access in your web browser by navigating to http://localhost:xxxx.
 
 ## Usage
 Once you are on the website, you can input medical text into the text box provided. You can then choose from the following options:
