@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 import argparse
 import nltk
 from nltk.corpus import stopwords
-#nltk.download('stopwords')
+nltk.download('stopwords')
 
 
 class SumText:
@@ -61,7 +61,7 @@ class SumText:
         :return: reduced size text
         """
         stop_words = set(stopwords.words('english'))
-        text = self.split()
+        text = self.text.split()
         definitions = []
         for word in text:
             if len(word) > 1 and word not in stop_words:
