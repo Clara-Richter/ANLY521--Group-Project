@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ANLY521--Group-Project
 Using NLP to better understand medical documents.
 =======
@@ -37,4 +38,6 @@ Label Entities: This option will label medical name entities in the text you pro
 Definitions: This option will provide definitions for medical terms found in the text you provided.  
 
 "add screenshots of examples here"
+
+>>>>>>> 28826d95a7cec4e55c964f50d373d440d3e5694e
 

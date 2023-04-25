@@ -2,19 +2,18 @@ import dash
 from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output, State
-from Code.entities import extract_entities
+from Code.entities import extract_entities, display_entities
 from Code.summarization import SumText
 
 import spacy
 import dash_bootstrap_components as dbc
 
-available_packages = ['en_ner_bionlp13cg_md',]
+available_packages = ['en_ner_bionlp13cg_md', 'en_ner_bc5cdr_md', 'en_core_web_sm']
 
-
-#nlp = spacy.load('en_ner_bionlp13cg_md')
 
 app = dash.Dash(
-    external_stylesheets=[dbc.themes.BOOTSTRAP]
+    external_stylesheets=[dbc.themes.BOOTSTRAP],
+    suppress_callback_exceptions=True
 )
 
 
@@ -46,36 +45,24 @@ navbar = dbc.NavbarSimple(
     className='fixed-top'
 )
 
-# Control section giving options
-controls = dbc.Card(
-    [
-        html.Div(
-            [
-                dbc.Label("Select Language"),
-                dcc.Dropdown(
-                    id="language-selection",
-                    options=['1', '2', '3'],
-                    value='what_is value'   # "value" sets the default value
-                )
-            ]
-        ),
-
-        html.Br(),
-
-        html.Div(
-            [
-                dbc.Label("Select spaCy Model"),
-                dcc.Dropdown(
-                    id="model-selection",
-                    options=['1', '2', '3'],
-                    value='what_is value'   # "value" sets the default value
-                )
-            ]
-        )
-    ],
-    body=True,
-    color="light"
-)
+# # Control section giving options
+# controls = dbc.Card(
+#     [
+#
+#         html.Div(
+#             [
+#                 dbc.Label("Select spaCy Model"),
+#                 dcc.Dropdown(
+#                     id="model-selection",
+#                     options=available_packages,
+#                     value='en_ner_bc5cdr_md'   # "value" sets the default value
+#                 )
+#             ]
+#         )
+#     ],
+#     body=True,
+#     color="light"
+# )
 
 
 # define the home page layout
@@ -164,11 +151,11 @@ ourwork_layout = dbc.Container(
     [
         dbc.Row(
             [
-                dbc.Col(
-                    controls,
-                    md=4,
-                    style={"height": "100%", "box-sizing": "border-box"}
-                ),
+                # dbc.Col(
+                #     controls,
+                #     md=4,
+                #     style={"height": "100%", "box-sizing": "border-box"}
+                # ),
                 dbc.Col(
                     [
                         dcc.Textarea(
@@ -218,7 +205,7 @@ ourwork_layout = dbc.Container(
                         )
 
                     ],
-                    md=8,
+                    md=12,
                     style={"height": "100%", "box-sizing": "border-box"}
                 ),
             ],
@@ -256,53 +243,6 @@ def display_page(pathname):
         return home_layout
 
 
-#     html.Div([
-#     html.H1(
-#         children = "Using NLP to Better Understand Medical Documents",
-#         style={'textAlign': 'center'}
-#     ),
-#
-#     html.Div(children='Your medical documents can be summarized here!',
-#              style={'textAlign': 'center'}),
-#
-#     html.Br(),
-#
-#     html.Div(children=[
-#         html.Label('Select spaCy Model'),
-#         dcc.Dropdown(['en_ner_bionlp13cg_md', 'en_ner_bc5cdr_md'],
-#                      style={'width': '80%'}),
-#     ]),
-#
-#     html.Br(),
-#
-#     dcc.Textarea(
-#         id='input-text',
-#         placeholder='Enter text here...',
-#         style={'width': '80%', 'height': '200px'}
-#     ),
-#     html.Button('Submit', id='submit-button', n_clicks=0),
-#     html.Div(id='output')
-# ])
-
-#
-# @app.callback(Output('output', 'children'),
-#               Input('summarize-button', 'n_clicks'),
-#               Input('entities-button', 'n_clicks'),
-#               State('input-text', 'value'))
-# def update_output(n_clicks, input_text):
-#     triggered_id = ctx.triggered_id
-#     if triggered_id == "summarize-button":
-#         s = SumText(input_text)
-#         res = s.summarize()
-#         return [html.P("Summarization:"), html.P(res)]
-#     elif triggered_id == "entities-button":
-#         output_list = extract_entities(input_text)
-#         return html.Ul(
-#             [html.Li(f"{text} ({label}") for text, label in output_list]
-#         )
-#
-
-
 @app.callback(Output('output', 'children', allow_duplicate=True),
               Input('summarize-button', 'n_clicks'),
               State('input-text', 'value'),
@@ -317,9 +257,11 @@ def update_summarize_output(n_clicks, input_text):
     return "Please enter text"
 
 
-@app.callback(Output('output', 'children'),
+@app.callback(Output('output', 'children', allow_duplicate=True),
               Input('entities-button', 'n_clicks'),
-              State('input-text', 'value'))
+              State('input-text', 'value'),
+              prevent_initial_call=True
+              )
 def update_entities_output(n_clicks, input_text):
     if n_clicks is not None and n_clicks > 0 and input_text:
         print(2)
@@ -329,6 +271,36 @@ def update_entities_output(n_clicks, input_text):
             html.P("Entities:"),
             html.Ul([html.Li(f"{text} ({label})") for text, label in output_list])
         ]
+    return "Please enter text"
+
+
+@app.callback(Output('output', 'children', allow_duplicate=True),
+              Input('definitions-button', 'n_clicks'),
+              State('input-text', 'value'),
+              prevent_initial_call=True
+              )
+def update_definitions_output(n_clicks, input_text):
+    if n_clicks is not None and n_clicks > 0 and input_text:
+        print(4)
+        s = SumText(input_text)
+        res = s.add_definitions()
+        print(5)
+        return [html.P("Add definitions:"), html.P(res)]
+    return "Please enter text"
+
+
+@app.callback(Output('output', 'children', allow_duplicate=True),
+              #Input('model-selection', 'value'),
+              Input('display-button', 'n_clicks'),
+              State('input-text', 'value'),
+              prevent_initial_call=True
+              )
+def update_display_output(n_clicks, input_text):
+    if n_clicks is not None and n_clicks > 0 and input_text:
+        print()
+        html_entities = display_entities(input_text)
+        print(7)
+        return [html.P("Display NER:"), dcc.Markdown([html_entities], dangerously_allow_html=True)]
     return "Please enter text"
 
 
