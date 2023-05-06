@@ -13,7 +13,9 @@ nltk.download('stopwords')
 class SumText:
 
     """
-    This class does summarization
+    This class contains the functions summarization and definitions.
+    Summarization: Uses spacy package to summarize given text file
+    Definition: Uses web scrapping to add definitions to current text file for uncommon words
     """
 
     def __init__(self, text):
@@ -76,8 +78,6 @@ class SumText:
                 if definition is not None:
                     text = definition.get_text().strip().split('\n')[0:10]
                     text = list(filter(lambda x: len(x) > 2, text))
-                    #text = '<span style="color: red;">({})</span>'.format(text)
-                    #word = '<span style="color: blue;">{}</span>'.format(word)
                     text = '{} ({})'.format(word, text)
                     definitions.append(text)
                 else:
