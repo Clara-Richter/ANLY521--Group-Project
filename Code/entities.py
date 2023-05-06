@@ -3,6 +3,10 @@ import spacy
 import re
 
 def extract_entities(text):
+    '''
+    Take medical text and output entities 
+    from the text related to disease or chemicals.
+    '''
     # remove the puncuation
     text = re.sub(r'[^\w\s]', '', text)
     # change to lower case

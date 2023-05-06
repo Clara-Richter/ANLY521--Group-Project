@@ -3,6 +3,11 @@ from spacy import displacy
 import re
 
 def display_entities(text):
+    '''
+    Take medical text and output an html file
+    with disease and chemical entities highlighted
+    in the text.
+    '''
     # remove the puncuation
     text = re.sub(r'[^\w\s]', '', text)
     # change to lower case
