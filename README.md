@@ -36,7 +36,7 @@ To run the program, call main.py. There are 4 options you can run:
 Once you are on the website, you can input medical text into the text box provided. You can then choose from the following options:
 
 Summarize: This option will generate a summary of the text you provided.   
-Definitions: This option will provide definitions for medical terms found in the text you provided. 
+Definitions: This option will provide definitions for medical terms found in the text you provided.  
 Entities: This option will return a list of the medical name entities and if they are a chemical or a disease.  
 Label Entities: This option will label medical name entities related to a chemical or disease in the text you provided.   
 
