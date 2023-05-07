@@ -17,8 +17,9 @@ $ conda env create -f environment.yml
 
 This will create a new Conda environment called '...' with all the required packages.
 
-Next, activate the Conda environment using the following command
+Next, go to project folder and activate the Conda environment using the following command
 ```
+$ cd ANLY521--Group-Project
 $ conda activate ...
 ```
 
@@ -27,19 +28,17 @@ Install MedEase:
 $ pip install .
 ```
 
-Finally, run the following command to launch the Dash website:
-```
-$ python dash/nlp_dash.py
-```
-
-This will launch the website, which you can access in your web browser by navigating to http://localhost:xxxx.
-
 ## Usage
+To run the program, call main.py. There are 4 options you can run:
+
+
+## Website
 Once you are on the website, you can input medical text into the text box provided. You can then choose from the following options:
 
-Summarize: This option will generate a summary of the text you provided.  
-Label Entities: This option will label medical name entities in the text you provided.  
-Definitions: This option will provide definitions for medical terms found in the text you provided.  
+Summarize: This option will generate a summary of the text you provided.   
+Definitions: This option will provide definitions for medical terms found in the text you provided. 
+Entities: This option will return a list of the medical name entities and if they are a chemical or a disease.
+Label Entities: This option will label medical name entities related to a chemical or disease in the text you provided. 
 
 "add screenshots of examples here"
 
