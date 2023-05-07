@@ -38,25 +38,25 @@ To run the program, call main.py and the file path of the text file you want tra
 #### Summarize:
 This will generate a summary printed in the terminal of the text file.
 ```
-$ python3 Code/bin/main.py --indir Data/test_text.txt --...
+$ python3 Code/bin/main.py -f test/test_text.txt -t summary
 ```
 
 #### Definitions:
 This will generate the text with definitions for terms found in the text printed in the terminal.
 ```
-$ python3 Code/bin/main.py --indir Data/test_text.txt --...
+$ python3 Code/bin/main.py -f test/test_text.txt -t definitions
 ```
 
 #### Entities:
 This will generate a list in the terminal of the medical name entities and if they are a chemical or a disease.
 ```
-$ python3 Code/bin/main.py --indir Data/test_text.txt --...
+$ python3 Code/bin/main.py -f test/test_text.txt -t entities
 ```
 
 #### Display NER:
 This will output a file called output.html in the root folder. The file will contain the highlighted medical name entities related to a chemical or disease in the text.
 ```
-$ python3 Code/bin/main.py --indir Data/test_text.txt --...
+$ python3 Code/bin/main.py -f test/test_text.txt -t display
 ```
 
 ## Website
