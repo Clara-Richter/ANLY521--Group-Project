@@ -67,7 +67,7 @@ Once you are on the website, you can input medical text into the text box provid
 <ins>Summarize</ins>: This option will generate a summary of the text you provided.   
 <ins>Definitions</ins>: This option will provide definitions for medical terms found in the text you provided.  
 <ins>Entities</ins>: This option will return a list of the medical name entities and if they are a chemical or a disease.  
-<ins>Label Entities</ins>: This option will label medical name entities related to a chemical or disease in the text you provided.   
+<ins>Display NER</ins>: This option will label medical name entities related to a chemical or disease in the text you provided.   
 
 ![](./dash/img/website.png)
 
