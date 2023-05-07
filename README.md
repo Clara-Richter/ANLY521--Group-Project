@@ -29,8 +29,27 @@ $ pip install .
 ```
 
 ## Usage
-To run the program, call main.py. There are 4 options you can run:
+To run the program, call main.py and the file path of the text file you want translated. There are 4 options you can run:
 
+#### Summarize:
+```
+$ python3 Code/bin/main.py --indir Data/test_text.txt --...
+```
+
+#### Definitions:
+```
+$ python3 Code/bin/main.py --indir Data/test_text.txt --...
+```
+
+#### Entities:
+```
+$ python3 Code/bin/main.py --indir Data/test_text.txt --...
+```
+
+#### Label Entities:
+```
+$ python3 Code/bin/main.py --indir Data/test_text.txt --...
+```
 
 ## Website
 Once you are on the website, you can input medical text into the text box provided. You can then choose from the following options:
