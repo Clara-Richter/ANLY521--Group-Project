@@ -13,5 +13,5 @@ def extract_entities(text):
     text = text.lower()
     nlp = spacy.load('en_ner_bc5cdr_md')
     doc = nlp(text)
-    entities = [(ent.text, ent.label_, ent.start_char, ent.end_char) for ent in doc.ents if ent.label_ in ['DISEASE', 'CHEMICAL']]
+    entities = [(ent.text, ent.label_) for ent in doc.ents if ent.label_ in ['DISEASE', 'CHEMICAL']]
     return entities

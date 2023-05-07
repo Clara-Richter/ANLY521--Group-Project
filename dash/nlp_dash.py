@@ -2,7 +2,8 @@ import dash
 from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output, State
-from Code.entities import extract_entities, display_entities
+from Code.entities import extract_entities
+from Code.utils.display import display_entities
 from Code.summarization import SumText
 
 import spacy
@@ -250,7 +251,6 @@ def display_page(pathname):
               )
 def update_summarize_output(n_clicks, input_text):
     if n_clicks is not None and n_clicks > 0 and input_text:
-        print(1)
         s = SumText(input_text)
         res = s.summarize()
         return [html.P("Summarization:"), html.P(res)]
@@ -264,9 +264,7 @@ def update_summarize_output(n_clicks, input_text):
               )
 def update_entities_output(n_clicks, input_text):
     if n_clicks is not None and n_clicks > 0 and input_text:
-        print(2)
         output_list = extract_entities(input_text)
-        print(3)
         return [
             html.P("Entities:"),
             html.Ul([html.Li(f"{text} ({label})") for text, label in output_list])
@@ -281,10 +279,8 @@ def update_entities_output(n_clicks, input_text):
               )
 def update_definitions_output(n_clicks, input_text):
     if n_clicks is not None and n_clicks > 0 and input_text:
-        print(4)
         s = SumText(input_text)
         res = s.add_definitions()
-        print(5)
         return [html.P("Add definitions:"), html.P(res)]
     return "Please enter text"
 
@@ -297,9 +293,7 @@ def update_definitions_output(n_clicks, input_text):
               )
 def update_display_output(n_clicks, input_text):
     if n_clicks is not None and n_clicks > 0 and input_text:
-        print()
         html_entities = display_entities(input_text)
-        print(7)
         return [html.P("Display NER:"), dcc.Markdown([html_entities], dangerously_allow_html=True)]
     return "Please enter text"
 
