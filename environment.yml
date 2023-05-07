@@ -1,4 +1,4 @@
-name: anly521
+name: MedEase
 channels:
   - huggingface
   - pytorch
