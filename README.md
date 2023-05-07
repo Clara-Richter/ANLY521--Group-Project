@@ -49,7 +49,7 @@ This will generate a list in the terminal of the medical name entities and if th
 $ python3 Code/bin/main.py --indir Data/test_text.txt --...
 ```
 
-#### Label Entities:
+#### Display NER:
 This will output a file called output.html in the root folder. The file will contain the highlighted medical name entities related to a chemical or disease in the text.
 ```
 $ python3 Code/bin/main.py --indir Data/test_text.txt --...
