@@ -56,6 +56,12 @@ $ python3 Code/bin/main.py --indir Data/test_text.txt --...
 ```
 
 ## Website
+Launch the website:
+```
+$ python3 dash/nlp_dash.py
+```
+MedEase is now running on http://127.0.0.1:8050/
+
 Once you are on the website, you can input medical text into the text box provided. You can then choose from the following options:
 
 Summarize: This option will generate a summary of the text you provided.   
