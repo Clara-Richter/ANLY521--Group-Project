@@ -4,6 +4,8 @@ Using NLP to better understand medical documents.
 # MedEase
 MedEase is a tool that uses NLP to help users better understand medical text. This project is designed to help the average person who does not have strong medical knowledge understand medical text such as discharge notes, medical transcriptions, or any other type of medical text. MedEase is built using Python code and a Dash website.
 
+## Program flow
+
 ![](flowchart521.svg)
 
 ## Installation
