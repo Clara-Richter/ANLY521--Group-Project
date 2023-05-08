@@ -18,17 +18,44 @@ def main():
     args = parser.parse_args()
     text = load_text(args.indir)
     if args.type == 'summary':
+
+        # logging
+        print('Summarization in progress...')
+
         result = SumText(text)
         result = result.summarize()
         print(result)
+
+        # logging
+        print('Summarization complete.')
+
     elif args.type == 'definitions':
+
+        # logging
+        print('Finding definitions of words...')
+
         result = SumText(text)
         result = result.add_definitions()
         print(result)
+
+        # logging
+        print('Definition addition complete.')
+
     elif args.type == 'entities':
+
+        # logging
+        print('Extracting entities...')
+    
         result = extract_entities(text)
         print(result)
+
+        # logging
+        print('Extraction complete.')
+
     elif args.type == 'display':
+
+        # logging
+        print('Displaying entities.')
         display_entities(text)
 
 

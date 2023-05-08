@@ -30,6 +30,9 @@ class SumText:
         nlp = spacy.load('en_core_sci_sm')
         doc = nlp(self.text)
         tokens = [token.text for token in doc]
+
+        print(f'There are {len(tokens)} tokens.')
+
         word_frequencies = {}
         for word in doc:
             if word.text.lower() not in list(STOP_WORDS):
@@ -84,5 +87,9 @@ class SumText:
                     definitions.append(word + ' ')
             else:
                 definitions.append(word + ' ')
+        
+        # logging
+        print(f'Found definitions for {len(definitions)} words!')
+
         definitions = ''.join(definitions)
         return definitions
