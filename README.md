@@ -19,12 +19,12 @@ Create a Conda environment with the required packages. You can do this using the
 $ conda env create -f environment.yml
 ```
 
-This will create a new Conda environment called '...' with all the required packages.
+This will create a new Conda environment called `MedEase` with all the required packages.
 
 Next, go to project folder and activate the Conda environment using the following command
 ```
 $ cd ANLY521--Group-Project
-$ conda activate ...
+$ conda activate MedEase
 ```
 
 Install MedEase:
